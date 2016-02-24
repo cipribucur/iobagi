@@ -41,9 +41,9 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
+.controller('Ctrl', function($scope) {
   $scope.playlists = [
-    { title: 'Party Animal', id: 1 },
+    { title: 'Party Animallllll', id: 1 },
     { title: 'Cultural Guy', id: 2 },
     { title: 'History Geek', id: 3 },
     { title: 'Snoop Doog', id: 4 }
@@ -57,6 +57,10 @@ angular.module('starter.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
+   $scope.playlist = [
+    { title: 'Viata e mare!!!!', id: 1 },
+    { title: 'e bine daca nu e rau', id: 2}
+  ];
 });
 
 
