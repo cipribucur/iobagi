@@ -41,8 +41,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('Ctrl', function($scope) {
-  $scope.playlists = [
+.controller('AvatarsCtrl', function($scope) {
+  $scope.avatars = [
     { title: 'Party Animallllll', id: 1 },
     { title: 'Cultural Guy', id: 2 },
     { title: 'History Geek', id: 3 },
