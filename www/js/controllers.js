@@ -46,20 +46,30 @@ angular.module('starter.controllers', [])
     { title: 'Party Animallllll', id: 1 },
     { title: 'Cultural Guy', id: 2 },
     { title: 'History Geek', id: 3 },
-    { title: 'Snoop Doog', id: 4 }
+    { title: 'Snoop Dogg', id: 4 }
   ];
 })
 
 .controller('LocationsCtrl', function($scope) {
   $scope.locations = [
-    { title: 'Cluj', id: 1 }
+    { title: 'Piața Unirii', id: 1 },
+    { title: 'Piața Muzeului', id:2},
+    { title: 'Blvd. Eroilor', id: 3},
+    { title: 'Casa de Cultură', id: 4},
+    { title: 'Teatrul Național', id: 5},
+    { title: 'Opera Maghiară', id: 6},
+    { title: 'Stadion "Cluj Arena"', id: 7},
+    { title: 'Cetațuia', id: 8},
+    { title: 'Piezișa', id: 9},
+    { title: 'Grădina Botanică', id: 10},
+    { title: 'Casa Tiff', id:11}
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
-   $scope.playlist = [
+.controller('AvatarCtrl', function($scope, $stateParams) {
+   $scope.avatar = [
     { title: 'Viata e mare!!!!', id: 1 },
-    { title: 'e bine daca nu e rau', id: 2}
+    { title: 'e bine daca nu e rau', id: 2 }
   ];
 });
 

@@ -49,6 +49,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
+  
+  .state('app.locations', {
+      url: '/locations',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/locations.html',
+          controller: 'LocationsCtrl'
+        }
+      }
+    })
 
     .state('app.avatars', {
       url: '/avatars',
@@ -61,11 +71,11 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     })
 
   .state('app.single', {
-    url: '/playlists/:playlistId',
+    url: '/avatars/:avatarId',
     views: {
       'menuContent': {
-        templateUrl: 'templates/playlist.html',
-        controller: 'PlaylistCtrl'
+        templateUrl: 'templates/avatar.html',
+        controller: 'AvatarCtrl'
       }
     }
   });
