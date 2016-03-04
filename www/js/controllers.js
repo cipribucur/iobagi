@@ -41,17 +41,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('AvatarsCtrl', function($scope) {
-  $scope.avatars = [
-    { title: 'Party Animallllll', id: 1 },
-    { title: 'Cultural Guy', id: 2 },
-    { title: 'History Geek', id: 3 },
-    { title: 'Snoop Dogg', id: 4 }
-  ];
-})
-
-.controller('LocationsCtrl', function($scope) {
-  $scope.locations = [
+.factory('Locations', function(){
+  var locations = [
     { title: 'Piața Unirii', id: 1 },
     { title: 'Piața Muzeului', id:2},
     { title: 'Blvd. Eroilor', id: 3},
@@ -64,13 +55,36 @@ angular.module('starter.controllers', [])
     { title: 'Grădina Botanică', id: 10},
     { title: 'Casa Tiff', id:11}
   ];
+  
+  return locations;
 })
 
-.controller('AvatarCtrl', function($scope, $stateParams) {
-   $scope.avatar = [
-    { title: 'Viata e mare!!!!', id: 1 },
-    { title: 'e bine daca nu e rau', id: 2 }
+
+.controller('LocationsCtrl', function($scope, Locations) {
+  $scope.locations = Locations;
+})
+
+.controller('LocationCtrl', function($scope, $stateParams, Locations) {
+  var i = 0;
+  angular.forEach(Locations, function(value, key){
+      if (value.id == $stateParams.locationId) {
+        $scope.location = value;
+      }
+  }, $scope.location);
+})
+
+.controller('AvatarsCtrl', function($scope) {
+  $scope.avatars = [
+    { title: 'Party Animallllll', id: 1 },
+    { title: 'Cultural Guy', id: 2 },
+    { title: 'History Geek', id: 3 },
+    { title: 'Snoop Dogg', id: 4 }
   ];
-});
+})
+
+
+.controller('AvatarCtrl', function($scope, $stateParams) {
+})
+
 
 

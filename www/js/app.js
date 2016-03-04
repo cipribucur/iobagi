@@ -59,16 +59,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         }
       }
     })
-
-    .state('app.avatars', {
-      url: '/avatars',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/avatars.html',
-          controller: 'AvatarsCtrl'
-        }
+    
+  .state('app.location', {
+    url: '/location/:locationId',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/location.html',
+        controller: 'LocationCtrl'
       }
-    })
+    }
+  })  
+
+  .state('app.avatars', {
+    url: '/avatars',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/avatars.html',
+        controller: 'AvatarsCtrl'
+      }
+    }
+  })
 
   .state('app.single', {
     url: '/avatars/:avatarId',

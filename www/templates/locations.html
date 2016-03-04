@@ -8,12 +8,16 @@
       </label>
     </div>
     
-    <button class="button button-balanced">
-        Pick all Locations
-    </button>
+    <div class="button-bar">
+      <button class="button button-large button-balanced button-block" >
+        Select All
+      </button>
+    </div>
+    
+    
     
     <ion-list>
-      <ion-item ng-repeat="location in locations" href="#/app/browse/{{location.id}}">
+      <ion-item ng-repeat="location in locations" href="#/app/location/{{location.id}}">
        {{location.title}}
       </ion-item>
     </ion-list>
