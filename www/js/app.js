@@ -80,8 +80,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
-  .state('app.single', {
-    url: '/avatars/:avatarId',
+  .state('app.avatar', {
+    url: '/avatar/:avatarId',
     views: {
       'menuContent': {
         templateUrl: 'templates/avatar.html',

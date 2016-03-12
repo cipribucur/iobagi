@@ -43,7 +43,7 @@ angular.module('starter.controllers', [])
 
 .factory('Locations', function(){
   var locations = [
-    { title: 'Piața Unirii', id: 1 },
+    { title: 'Piața Unirii', id: 1 ,info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
     { title: 'Piața Muzeului', id:2},
     { title: 'Blvd. Eroilor', id: 3},
     { title: 'Casa de Cultură', id: 4},
@@ -59,7 +59,6 @@ angular.module('starter.controllers', [])
   return locations;
 })
 
-
 .controller('LocationsCtrl', function($scope, Locations) {
   $scope.locations = Locations;
 })
@@ -73,18 +72,31 @@ angular.module('starter.controllers', [])
   }, $scope.location);
 })
 
-.controller('AvatarsCtrl', function($scope) {
-  $scope.avatars = [
+
+.factory('Avatars', function(){
+  var avatars =[
     { title: 'Party Animallllll', id: 1 },
     { title: 'Cultural Guy', id: 2 },
     { title: 'History Geek', id: 3 },
     { title: 'Snoop Dogg', id: 4 }
   ];
+  
+  return avatars;
+  
+})
+.controller('AvatarsCtrl', function($scope, Avatars) {
+  $scope.avatars = Avatars;
 })
 
+.controller('AvatarCtrl',  function($scope, $stateParams, Avatars) {
+  var i = 0;
+  angular.forEach(Avatars, function(value, key) {
+      if (value.id == $stateParams.avatarId) {
+        $scope.avatar = value;
+      }
+  }, $scope.avatar);
+});
 
-.controller('AvatarCtrl', function($scope, $stateParams) {
-})
 
 
 
