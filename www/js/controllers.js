@@ -43,17 +43,17 @@ angular.module('starter.controllers', [])
 
 .factory('Locations', function(){
   var locations = [
-    { title: 'Piața Unirii', id: 1 ,info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
-    { title: 'Piața Muzeului', id:2},
-    { title: 'Blvd. Eroilor', id: 3},
-    { title: 'Casa de Cultură', id: 4},
-    { title: 'Teatrul Național', id: 5},
-    { title: 'Opera Maghiară', id: 6},
-    { title: 'Stadion "Cluj Arena"', id: 7},
-    { title: 'Cetațuia', id: 8},
-    { title: 'Piezișa', id: 9},
-    { title: 'Grădina Botanică', id: 10},
-    { title: 'Casa Tiff', id:11}
+    { title: 'Piața Unirii', id: 1 , info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
+    { title: 'Piața Muzeului', id:2, info: 'Piata Muzeului a primit numele dupa Muzeul de Istorie al Transilvaniei care se afla in capatul acesteia.Piata a fost transformata in zona pietonala, unde pe timul verii sunt terase in aer liber si unde se organizeaza evenimente, mai ales in zona Casei Matei Corvin.'},
+    { title: 'Blvd. Eroilor', id: 3, info: 'Bulevardul Eroilor este una dintre cele mai importante artere din Cluj-Napoca. '},
+    { title: 'Casa de Cultură', id: 4, info: 'Situata in centrul orasului, Casa de Cultura a Studentilor este un spatiu destinat evenimentelor culturale, sociale si de petrecere a timpului liber.'},
+    { title: 'Teatrul Național', id: 5, info: 'Clădirea Teatrului Național din Cluj este sediul companiei Teatrul Național „Lucian Blaga“ și al companiei Opera Română din Cluj.'},
+    { title: 'Opera Maghiară', id: 6, info: 'Opera Maghiară de Stat din Cluj-Napoca este o companie națională de operă, înființată la 17 decembrie 1948. Clădirea s-a construit între anii 1909-1910, în locul unui teatru de vară ce data din anul 1874. Ansamblul are o capacitate de 1000 de locuri.'},
+    { title: 'Stadion "Cluj Arena"', id: 7, info: 'Cluj Arena este un stadion din Cluj-Napoca, construit în 2011 pe locul fostului stadion Ion Moina.'},
+    { title: 'Cetațuia', id: 8, info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia.'},
+    { title: 'Piezișa', id: 9, info: 'Scurta descriere'},
+    { title: 'Grădina Botanică', id: 10, info: 'Grădina Botanică „Alexandru Borza” a Universității Babeș-Bolyai din Cluj-Napoca, România a fost fondată în 1920 de profesorul Alexandru Borza.'},
+    { title: 'Casa Tiff', id: 11, info: 'Casa TIFF este un centru cultural care isi propune sa promoveze educatia cinematografica si nevoie de exprimare prin arta, cultivand si dezvoltand randul clujenilor.'}
   ];
   
   return locations;
