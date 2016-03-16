@@ -50,7 +50,7 @@ angular.module('starter.controllers', ['ionic'])
     { title: 'Teatrul Național', id: 5, info: 'Clădirea Teatrului Național din Cluj este sediul companiei Teatrul Național „Lucian Blaga“ și al companiei Opera Română din Cluj.'},
     { title: 'Opera Maghiară', id: 6, info: 'Opera Maghiară de Stat din Cluj-Napoca este o companie națională de operă, înființată la 17 decembrie 1948. Clădirea s-a construit între anii 1909-1910, în locul unui teatru de vară ce data din anul 1874. Ansamblul are o capacitate de 1000 de locuri.'},
     { title: 'Stadion "Cluj Arena"', id: 7, info: 'Cluj Arena este un stadion din Cluj-Napoca, construit în 2011 pe locul fostului stadion Ion Moina.'},
-    { title: 'Cetațuia', id: 8, info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia.'},
+    { title: 'Cetațuia', id: 8, info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia. Dar nu numai'},
     { title: 'Piezișa', id: 9, info: 'Scurta descriere'},
     { title: 'Grădina Botanică', id: 10, info: 'Grădina Botanică „Alexandru Borza” a Universității Babeș-Bolyai din Cluj-Napoca, România a fost fondată în 1920 de profesorul Alexandru Borza.'},
     { title: 'Casa Tiff', id: 11, info: 'Casa TIFF este un centru cultural care isi propune sa promoveze educatia cinematografica si nevoie de exprimare prin arta, cultivand si dezvoltand randul clujenilor.'}
@@ -101,13 +101,12 @@ angular.module('starter.controllers', ['ionic'])
 .controller('OptionsCtrl',function($scope) {
 
   var nr = 0;
-  $scope.go = function (msg) {
-    alert(msg);
+  $scope.go = function () {
+    
   };
 
   $scope.add = function () {
     nr += 1;
-    alert(nr);
   }
 
 })
