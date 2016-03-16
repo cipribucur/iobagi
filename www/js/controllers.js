@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ionic'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -95,7 +95,23 @@ angular.module('starter.controllers', [])
         $scope.avatar = value;
       }
   }, $scope.avatar);
-});
+})
+
+
+.controller('OptionsCtrl',function($scope) {
+
+  var nr = 0;
+  $scope.go = function (msg) {
+    alert(msg);
+  };
+
+  $scope.add = function () {
+    nr += 1;
+    alert(nr);
+  }
+
+})
+;
 
 
 
