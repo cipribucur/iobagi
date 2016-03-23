@@ -10,8 +10,10 @@
     </div>
     
     <div style="top:50%;">
-      <button class="button button-balanced">
-        Add this location to tour
+      
+      {{status()}}
+      <button class="button button-block {{buttonStyle}}" ng-click="add()">
+        {{buttonText}}
       </button>
 
     </div>

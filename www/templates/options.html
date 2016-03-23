@@ -1,15 +1,12 @@
 <ion-view view-title="Options">
   <ion-content class="padding">
-    <div class="button-bar">
-     <button class="button button-large button-balanced button-block" ng-click="go('ceva')">
-      Alert test
-     </button>
-     </div>
-     
-     <div class="button-bar">
-     <button class="button button-large button-balanced button-block" ng-click="add()">
-      Concatenate
-     </button>
-     </div>
+   
+   
+    <div>
+        <button class="button button-block {{buttonStyle}}" ng-click="add()">
+          {{buttonText}}
+        </button>
+    </div>
+        
   </ion-content>
 </ioni-view>

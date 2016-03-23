@@ -1,5 +1,8 @@
 angular.module('starter.controllers', ['ionic'])
 
+
+
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -43,17 +46,17 @@ angular.module('starter.controllers', ['ionic'])
 
 .factory('Locations', function(){
   var locations = [
-    { title: 'Piața Unirii', id: 1 , info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
-    { title: 'Piața Muzeului', id:2, info: 'Piata Muzeului a primit numele dupa Muzeul de Istorie al Transilvaniei care se afla in capatul acesteia.Piata a fost transformata in zona pietonala, unde pe timul verii sunt terase in aer liber si unde se organizeaza evenimente, mai ales in zona Casei Matei Corvin.'},
-    { title: 'Blvd. Eroilor', id: 3, info: 'Bulevardul Eroilor este una dintre cele mai importante artere din Cluj-Napoca. '},
-    { title: 'Casa de Cultură', id: 4, info: 'Situata in centrul orasului, Casa de Cultura a Studentilor este un spatiu destinat evenimentelor culturale, sociale si de petrecere a timpului liber.'},
-    { title: 'Teatrul Național', id: 5, info: 'Clădirea Teatrului Național din Cluj este sediul companiei Teatrul Național „Lucian Blaga“ și al companiei Opera Română din Cluj.'},
-    { title: 'Opera Maghiară', id: 6, info: 'Opera Maghiară de Stat din Cluj-Napoca este o companie națională de operă, înființată la 17 decembrie 1948. Clădirea s-a construit între anii 1909-1910, în locul unui teatru de vară ce data din anul 1874. Ansamblul are o capacitate de 1000 de locuri.'},
-    { title: 'Stadion "Cluj Arena"', id: 7, info: 'Cluj Arena este un stadion din Cluj-Napoca, construit în 2011 pe locul fostului stadion Ion Moina.'},
-    { title: 'Cetațuia', id: 8, info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia. Dar nu numai'},
-    { title: 'Piezișa', id: 9, info: 'Scurta descriere'},
-    { title: 'Grădina Botanică', id: 10, info: 'Grădina Botanică „Alexandru Borza” a Universității Babeș-Bolyai din Cluj-Napoca, România a fost fondată în 1920 de profesorul Alexandru Borza.'},
-    { title: 'Casa Tiff', id: 11, info: 'Casa TIFF este un centru cultural care isi propune sa promoveze educatia cinematografica si nevoie de exprimare prin arta, cultivand si dezvoltand randul clujenilor.'}
+    { title: 'Piața Unirii', id: 1 , selected: false , info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
+    { title: 'Piața Muzeului', id:2, selected: false , info: 'Piata Muzeului a primit numele dupa Muzeul de Istorie al Transilvaniei care se afla in capatul acesteia.Piata a fost transformata in zona pietonala, unde pe timul verii sunt terase in aer liber si unde se organizeaza evenimente, mai ales in zona Casei Matei Corvin.'},
+    { title: 'Blvd. Eroilor', id: 3, selected: false , info: 'Bulevardul Eroilor este una dintre cele mai importante artere din Cluj-Napoca. '},
+    { title: 'Casa de Cultură', id: 4, selected: false , info: 'Situata in centrul orasului, Casa de Cultura a Studentilor este un spatiu destinat evenimentelor culturale, sociale si de petrecere a timpului liber.'},
+    { title: 'Teatrul Național', id: 5, selected: false , info: 'Clădirea Teatrului Național din Cluj este sediul companiei Teatrul Național „Lucian Blaga“ și al companiei Opera Română din Cluj.'},
+    { title: 'Opera Maghiară', id: 6, selected: false , info: 'Opera Maghiară de Stat din Cluj-Napoca este o companie națională de operă, înființată la 17 decembrie 1948. Clădirea s-a construit între anii 1909-1910, în locul unui teatru de vară ce data din anul 1874. Ansamblul are o capacitate de 1000 de locuri.'},
+    { title: 'Stadion "Cluj Arena"', id: 7, selected: false , info: 'Cluj Arena este un stadion din Cluj-Napoca, construit în 2011 pe locul fostului stadion Ion Moina.'},
+    { title: 'Cetațuia', id: 8, selected: false , info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia.'},
+    { title: 'Piezișa', id: 9, selected: false , info: 'Scurta descriere'},
+    { title: 'Grădina Botanică', selected: false , id: 10, info: 'Grădina Botanică „Alexandru Borza” a Universității Babeș-Bolyai din Cluj-Napoca, România a fost fondată în 1920 de profesorul Alexandru Borza.'},
+    { title: 'Casa Tiff', id: 11, selected: false , info: 'Casa TIFF este un centru cultural care isi propune sa promoveze educatia cinematografica si nevoie de exprimare prin arta, cultivand si dezvoltand randul clujenilor.'}
   ];
   
   return locations;
@@ -61,24 +64,70 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('LocationsCtrl', function($scope, Locations) {
   $scope.locations = Locations;
+  
+  $scope.select_all = function(){
+    angular.forEach(Locations, function(value, key) {
+        $scope.location=value;
+        $scope.location.selected=true
+    })
+  }
+  
+  
 })
 
 .controller('LocationCtrl', function($scope, $stateParams, Locations) {
-  var i = 0;
   angular.forEach(Locations, function(value, key){
       if (value.id == $stateParams.locationId) {
         $scope.location = value;
       }
   }, $scope.location);
+  
+  $scope.status = function(){
+    angular.forEach(Locations , function(value, key) {
+        if(value.id == $stateParams.locationId) {
+          $scope.location=value;
+        }
+    })
+    if($scope.location.selected==true){
+      $scope.buttonText = "Unselect";
+      $scope.buttonStyle="button-assertive";
+    }
+    else{
+      $scope.buttonText = "Select";
+      $scope.buttonStyle="button-balanced";
+    }
+  }
+
+  $scope.add = function(){
+    
+    var i = 0;
+    angular.forEach(Locations , function(value, key) {
+        if(value.id == $stateParams.locationId) {
+          $scope.location=value;
+        }
+    })
+    
+    if($scope.location.selected==false){
+      $scope.location.selected = true;
+      $scope.buttonText = "Unselect";
+      $scope.buttonStyle="button-assertive";
+    }
+    else{
+      $scope.location.selected = false;
+      $scope.buttonText = "Select";
+      $scope.buttonStyle="button-balanced";
+    }
+  }
+  
 })
 
 
 .factory('Avatars', function(){
   var avatars =[
-    { title: 'Party Animallllll', id: 1 },
-    { title: 'Cultural Guy', id: 2 },
-    { title: 'History Geek', id: 3 },
-    { title: 'Snoop Dogg', id: 4 }
+    { title: 'Party Animallllll', id: 1, status: false },
+    { title: 'Cultural Guy', id: 2, status: false },
+    { title: 'History Geek', id: 3, status: false },
+    { title: 'Snoop Dogg', id: 4, status: false }
   ];
   
   return avatars;
@@ -100,17 +149,32 @@ angular.module('starter.controllers', ['ionic'])
 
 .controller('OptionsCtrl',function($scope) {
 
-  var nr = 0;
-  $scope.go = function () {
+  /*$scope.init = function()
+  {
+    $scope.buttonSelected = false;
+    $scope.buttonText = "Select";
+    $scope.buttonStyle="button-calm";
+  }*/
+  $scope.add = function(){
     
-  };
-
-  $scope.add = function () {
-    nr += 1;
+    if($scope.buttonSelected==false){
+      $scope.buttonSelected = true;
+      $scope.buttonText = "Unselect";
+      $scope.buttonStyle="button-assertive";
+    }
+    else{
+      $scope.buttonSelected = false;
+      $scope.buttonText = "Select";
+      $scope.buttonStyle="button-balanced";
+    }
+    
   }
+  
+});
+ 
+  
+ 
 
-})
-;
 
 
 

@@ -1,5 +1,8 @@
 <ion-view view-title="Map">
   <ion-content>
-    <h1>Here is a map of all the Locations</h1>
+    <h1>Your locations are :</h1>
+      <ion-item ng-repeat="location in locations">
+        {{location.title}}
+      </ion-item>
   </ion-content>
 </ion-view>
