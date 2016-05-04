@@ -2,8 +2,6 @@
 
 angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
-
-
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
   // With the new view caching in Ionic, Controllers are only called
@@ -63,23 +61,19 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   return locations;
 })
 
-
-.factory('SelectedLocations',function(){
-  var status = [
-    {id: 1, selected: false},
-    {id: 2, selected: false},
-    {id: 3, selected: false},
-    {id: 4, selected: false},
-    {id: 5, selected: false},
-    {id: 6, selected: false},
-    {id: 7, selected: false},
-    {id: 8, selected: false},
-    {id: 9, selected: false},
-    {id: 10, selected: false},
-    {id: 11, selected: false}
+.factory('Avatars', function(){
+  var avatars =[
+    { title: 'Party Animallllll', id: 1},
+    { title: 'Cultural Guy', id: 2, },
+    { title: 'History Geek', id: 3, },
+    { title: 'Snoop Dogg', id: 4,}
   ];
-  return status;
+  
+  return avatars;
+  
 })
+
+
 
 .controller('LocationsCtrl', function($scope, Locations) {
   $scope.locations = Locations;
@@ -98,6 +92,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 .controller('LocationCtrl', function($scope, $stateParams, Locations, $localStorage) {
   
   var locationSelected = false;
+  var locationId = $stateParams.locationId;
  
   if (!$localStorage.locationIds) {
     $localStorage.locationIds = [];
@@ -106,28 +101,28 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   var locationIds = $localStorage.locationIds;
   
   angular.forEach(Locations, function(value, key){
-      if (value.id == $stateParams.locationId) {
+      if (value.id == locationId) {
         $scope.location = value;
       }
   }, $scope.locat);
   
   $scope.status = function(){
-    console.log($localStorage.locationIds);
+    //console.log($localStorage.locationIds);
     locationSelected = false;
     $scope.buttonText = "Select";
-    $scope.buttonStyle="button-balanced";
+    $scope.buttonStyle = "button-balanced";
     
     for (var i=0; i<locationIds.length; i++) {
-      if (locationIds[i] === $stateParams.locationId) {
+      if (locationIds[i] === locationId) {
         $scope.buttonText = "Unselect";
-        $scope.buttonStyle="button-assertive";
+        $scope.buttonStyle = "button-assertive";
         locationSelected = true;
       } 
     }
     
   }
-  $scope.status();
   
+  $scope.status();
   
   $scope.select = function() {
     if(locationSelected) {
@@ -142,33 +137,19 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.status();
   }
   
-   $scope.removeLocation = function(){
-     console.log('aici')
-      angular.forEach(locationIds, function(value, key) {
-        if (value === $stateParams.locationId) {
-          console.log(locationIds)
-          locationIds.splice(key, 1);
-           $scope.status();
-          return;
-        }
-    
-      }, $scope.locat);
-   }    
+  $scope.removeLocation = function(){
+    angular.forEach(locationIds, function(value, key) {
+      if (value === locationId) {
+        locationIds.splice(key, 1);
+         $scope.status();
+        return;
+      }
+  
+    }, $scope.locat);
+  }    
   
 })
 
-
-.factory('Avatars', function(){
-  var avatars =[
-    { title: 'Party Animallllll', id: 1, selected: false},
-    { title: 'Cultural Guy', id: 2, selected: false},
-    { title: 'History Geek', id: 3, selected: false},
-    { title: 'Snoop Dogg', id: 4, selected: false}
-  ];
-  
-  return avatars;
-  
-})
 .controller('AvatarsCtrl', function($scope, Avatars) {
   $scope.avatars = Avatars;
 })
@@ -203,14 +184,12 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   
   $scope.select = function(){
     
-    alert("Merge");
-    
     var i = 0;
     angular.forEach(Avatars , function(value, key) {
         if(value.id == $stateParams.avatarId) {
           $scope.avatar=value;
           $storage.avatarId = value.id;
-          console.log($localStorage);
+          //console.log($localStorage);
         }
     })
     
