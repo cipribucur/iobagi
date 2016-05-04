@@ -4,11 +4,14 @@
     <h1>{{avatar.title}}</h1>
    
     
-    <div style="position:relative;left:0px;top:400px;background-color:yellow;">
-      <button class="button button-full button-positive">
-       Select Avatar 
+     
+    <div style="top:50%;">
+      
+      <button class="button button-block {{buttonStyle}}" ng-click="select()">
+        {{buttonText}}
       </button>
-     </div>
+
+    </div>
  
   </ion-content>
 </ion-view>

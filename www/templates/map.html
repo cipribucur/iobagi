@@ -1,8 +1,21 @@
-<ion-view view-title="Map">
-  <ion-content>
-    <h1>Your locations are :</h1>
-      <ion-item ng-repeat="location in locations">
-        {{location.title}}
+<ion-view view-title="Pick your Locations">
+  <ion-content class="padding">
+    
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search">
+      </label>
+    </div>
+    
+    
+    
+    
+    <ion-list>
+      <ion-item ng-repeat="location in locations" href="#/app/location/{{location.id}}">
+       {{location.title}}
       </ion-item>
+    </ion-list>
+    
   </ion-content>
 </ion-view>

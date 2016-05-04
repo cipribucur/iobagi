@@ -1,5 +1,6 @@
-angular.module('starter.controllers', ['ionic'])
+/*global angular*/
 
+angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
 
 
@@ -46,20 +47,38 @@ angular.module('starter.controllers', ['ionic'])
 
 .factory('Locations', function(){
   var locations = [
-    { title: 'Piața Unirii', id: 1 , selected: false , info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
-    { title: 'Piața Muzeului', id:2, selected: false , info: 'Piata Muzeului a primit numele dupa Muzeul de Istorie al Transilvaniei care se afla in capatul acesteia.Piata a fost transformata in zona pietonala, unde pe timul verii sunt terase in aer liber si unde se organizeaza evenimente, mai ales in zona Casei Matei Corvin.'},
-    { title: 'Blvd. Eroilor', id: 3, selected: false , info: 'Bulevardul Eroilor este una dintre cele mai importante artere din Cluj-Napoca. '},
-    { title: 'Casa de Cultură', id: 4, selected: false , info: 'Situata in centrul orasului, Casa de Cultura a Studentilor este un spatiu destinat evenimentelor culturale, sociale si de petrecere a timpului liber.'},
-    { title: 'Teatrul Național', id: 5, selected: false , info: 'Clădirea Teatrului Național din Cluj este sediul companiei Teatrul Național „Lucian Blaga“ și al companiei Opera Română din Cluj.'},
-    { title: 'Opera Maghiară', id: 6, selected: false , info: 'Opera Maghiară de Stat din Cluj-Napoca este o companie națională de operă, înființată la 17 decembrie 1948. Clădirea s-a construit între anii 1909-1910, în locul unui teatru de vară ce data din anul 1874. Ansamblul are o capacitate de 1000 de locuri.'},
-    { title: 'Stadion "Cluj Arena"', id: 7, selected: false , info: 'Cluj Arena este un stadion din Cluj-Napoca, construit în 2011 pe locul fostului stadion Ion Moina.'},
-    { title: 'Cetațuia', id: 8, selected: false , info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia.'},
-    { title: 'Piezișa', id: 9, selected: false , info: 'Scurta descriere'},
-    { title: 'Grădina Botanică', selected: false , id: 10, info: 'Grădina Botanică „Alexandru Borza” a Universității Babeș-Bolyai din Cluj-Napoca, România a fost fondată în 1920 de profesorul Alexandru Borza.'},
-    { title: 'Casa Tiff', id: 11, selected: false , info: 'Casa TIFF este un centru cultural care isi propune sa promoveze educatia cinematografica si nevoie de exprimare prin arta, cultivand si dezvoltand randul clujenilor.'}
+    { title: 'Piața Unirii', id: 1 , info: 'Piața Unirii din Cluj, mai demult Piața Regele Matia, (în maghiară Mátyas Király tér), este punctul zero al municipiului Cluj-Napoca.'},
+    { title: 'Piața Muzeului', id:2 ,info: 'Piata Muzeului a primit numele dupa Muzeul de Istorie al Transilvaniei care se afla in capatul acesteia.Piata a fost transformata in zona pietonala, unde pe timul verii sunt terase in aer liber si unde se organizeaza evenimente, mai ales in zona Casei Matei Corvin.'},
+    { title: 'Blvd. Eroilor', id: 3, info: 'Bulevardul Eroilor este una dintre cele mai importante artere din Cluj-Napoca. '},
+    { title: 'Casa de Cultură', id: 4, info: 'Situata in centrul orasului, Casa de Cultura a Studentilor este un spatiu destinat evenimentelor culturale, sociale si de petrecere a timpului liber.'},
+    { title: 'Teatrul Național', id: 5, info: 'Clădirea Teatrului Național din Cluj este sediul companiei Teatrul Național „Lucian Blaga“ și al companiei Opera Română din Cluj.'},
+    { title: 'Opera Maghiară', id: 6, info: 'Opera Maghiară de Stat din Cluj-Napoca este o companie națională de operă, înființată la 17 decembrie 1948. Clădirea s-a construit între anii 1909-1910, în locul unui teatru de vară ce data din anul 1874. Ansamblul are o capacitate de 1000 de locuri.'},
+    { title: 'Stadion "Cluj Arena"', id: 7, info: 'Cluj Arena este un stadion din Cluj-Napoca, construit în 2011 pe locul fostului stadion Ion Moina.'},
+    { title: 'Cetațuia', id: 8, info: 'Cetățuia (în maghiară Fellegvár) este o fortificație construită in perioada Habsburgică în vârful dealului cu același nume din Cluj-Napoca, în cartierul Gruia.'},
+    { title: 'Piezișa', id: 9, info: 'Scurta descriere'},
+    { title: 'Grădina Botanică', id: 10, info: 'Grădina Botanică „Alexandru Borza” a Universității Babeș-Bolyai din Cluj-Napoca, România a fost fondată în 1920 de profesorul Alexandru Borza.'},
+    { title: 'Casa Tiff', id: 11, info: 'Casa TIFF este un centru cultural care isi propune sa promoveze educatia cinematografica si nevoie de exprimare prin arta, cultivand si dezvoltand randul clujenilor.'}
   ];
   
   return locations;
+})
+
+
+.factory('SelectedLocations',function(){
+  var status = [
+    {id: 1, selected: false},
+    {id: 2, selected: false},
+    {id: 3, selected: false},
+    {id: 4, selected: false},
+    {id: 5, selected: false},
+    {id: 6, selected: false},
+    {id: 7, selected: false},
+    {id: 8, selected: false},
+    {id: 9, selected: false},
+    {id: 10, selected: false},
+    {id: 11, selected: false}
+  ];
+  return status;
 })
 
 .controller('LocationsCtrl', function($scope, Locations) {
@@ -70,64 +89,81 @@ angular.module('starter.controllers', ['ionic'])
         $scope.location=value;
         $scope.location.selected=true
     })
+    alert("All locations selected");
   }
   
   
 })
 
-.controller('LocationCtrl', function($scope, $stateParams, Locations) {
+.controller('LocationCtrl', function($scope, $stateParams, Locations, $localStorage) {
+  
+  var locationSelected = false;
+ 
+  if (!$localStorage.locationIds) {
+    $localStorage.locationIds = [];
+  }
+  
+  var locationIds = $localStorage.locationIds;
+  
   angular.forEach(Locations, function(value, key){
       if (value.id == $stateParams.locationId) {
         $scope.location = value;
       }
-  }, $scope.location);
+  }, $scope.locat);
   
   $scope.status = function(){
-    angular.forEach(Locations , function(value, key) {
-        if(value.id == $stateParams.locationId) {
-          $scope.location=value;
-        }
-    })
-    if($scope.location.selected==true){
-      $scope.buttonText = "Unselect";
-      $scope.buttonStyle="button-assertive";
+    console.log($localStorage.locationIds);
+    locationSelected = false;
+    $scope.buttonText = "Select";
+    $scope.buttonStyle="button-balanced";
+    
+    for (var i=0; i<locationIds.length; i++) {
+      if (locationIds[i] === $stateParams.locationId) {
+        $scope.buttonText = "Unselect";
+        $scope.buttonStyle="button-assertive";
+        locationSelected = true;
+      } 
     }
-    else{
-      $scope.buttonText = "Select";
-      $scope.buttonStyle="button-balanced";
+    
+  }
+  $scope.status();
+  
+  
+  $scope.select = function() {
+    if(locationSelected) {
+      $scope.removeLocation();
+    } else {
+      $scope.addLocation();
     }
   }
-
-  $scope.add = function(){
-    
-    var i = 0;
-    angular.forEach(Locations , function(value, key) {
-        if(value.id == $stateParams.locationId) {
-          $scope.location=value;
-        }
-    })
-    
-    if($scope.location.selected==false){
-      $scope.location.selected = true;
-      $scope.buttonText = "Unselect";
-      $scope.buttonStyle="button-assertive";
-    }
-    else{
-      $scope.location.selected = false;
-      $scope.buttonText = "Select";
-      $scope.buttonStyle="button-balanced";
-    }
+  
+  $scope.addLocation = function(){
+      locationIds.push($stateParams.locationId);
+      $scope.status();
   }
+  
+   $scope.removeLocation = function(){
+     console.log('aici')
+      angular.forEach(locationIds, function(value, key) {
+        if (value === $stateParams.locationId) {
+          console.log(locationIds)
+          locationIds.splice(key, 1);
+           $scope.status();
+          return;
+        }
+    
+      }, $scope.locat);
+   }    
   
 })
 
 
 .factory('Avatars', function(){
   var avatars =[
-    { title: 'Party Animallllll', id: 1, status: false },
-    { title: 'Cultural Guy', id: 2, status: false },
-    { title: 'History Geek', id: 3, status: false },
-    { title: 'Snoop Dogg', id: 4, status: false }
+    { title: 'Party Animallllll', id: 1, selected: false},
+    { title: 'Cultural Guy', id: 2, selected: false},
+    { title: 'History Geek', id: 3, selected: false},
+    { title: 'Snoop Dogg', id: 4, selected: false}
   ];
   
   return avatars;
@@ -137,15 +173,73 @@ angular.module('starter.controllers', ['ionic'])
   $scope.avatars = Avatars;
 })
 
-.controller('AvatarCtrl',  function($scope, $stateParams, Avatars) {
+.controller('AvatarCtrl',  function($scope, $stateParams, Avatars, $localStorage) {
+  
+  $storage = $localStorage;
+  
   var i = 0;
   angular.forEach(Avatars, function(value, key) {
       if (value.id == $stateParams.avatarId) {
         $scope.avatar = value;
       }
   }, $scope.avatar);
+  
+  $scope.status = function(){
+    angular.forEach(Avatars , function(value, key) {
+        if(value.id == $stateParams.avatarId) {
+          $scope.avatar=value;
+        }
+    })
+    if($scope.avatar.selected==true){
+      $scope.buttonText = "Unselect";
+      $scope.buttonStyle="button-assertive";
+    }
+    else{
+      $scope.buttonText = "Select";
+      $scope.buttonStyle="button-balanced";
+    }
+  }
+  $scope.status();
+  
+  $scope.select = function(){
+    
+    alert("Merge");
+    
+    var i = 0;
+    angular.forEach(Avatars , function(value, key) {
+        if(value.id == $stateParams.avatarId) {
+          $scope.avatar=value;
+          $storage.avatarId = value.id;
+          console.log($localStorage);
+        }
+    })
+    
+    if($scope.avatar.selected==false){
+      
+      $scope.avatar.selected = true;
+      angular.forEach(Avatars, function(value, key) {
+        if(value.id!= $stateParams.avatarId)
+        {
+          $scope.avatar=value;
+          $scope.avatar.selected=false;
+        }
+      })
+        
+      $scope.buttonText = "Unselect";
+      $scope.buttonStyle="button-assertive";
+    }
+    else{
+      $scope.avatar.selected = false;
+      $scope.buttonText = "Select";
+      $scope.buttonStyle="button-balanced";
+      
+    }
+  }
 })
 
+ .controller('MapCtrl', function($scope, $stateParams, Locations){
+    $scope.location = Locations;
+  })
 
 .controller('OptionsCtrl',function($scope) {
 
