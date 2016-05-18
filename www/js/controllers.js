@@ -92,7 +92,6 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 .controller('LocationCtrl', function($scope, $stateParams, Locations, $localStorage) {
   
   var locationSelected = false;
-  var locationId = $stateParams.locationId;
  
   if (!$localStorage.locationIds) {
     $localStorage.locationIds = [];
@@ -101,7 +100,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   var locationIds = $localStorage.locationIds;
   
   angular.forEach(Locations, function(value, key){
-      if (value.id == locationId) {
+      if (value.id == $stateParams.locationId) {
         $scope.location = value;
       }
   }, $scope.locat);
@@ -113,7 +112,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     $scope.buttonStyle = "button-balanced";
     
     for (var i=0; i<locationIds.length; i++) {
-      if (locationIds[i] === locationId) {
+      if (locationIds[i] === $stateParams.locationId) {
         $scope.buttonText = "Unselect";
         $scope.buttonStyle = "button-assertive";
         locationSelected = true;
@@ -121,8 +120,8 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
     }
     
   }
-  
   $scope.status();
+  
   
   $scope.select = function() {
     if(locationSelected) {
@@ -137,16 +136,17 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.status();
   }
   
-  $scope.removeLocation = function(){
-    angular.forEach(locationIds, function(value, key) {
-      if (value === locationId) {
-        locationIds.splice(key, 1);
-         $scope.status();
-        return;
-      }
-  
-    }, $scope.locat);
-  }    
+   $scope.removeLocation = function(){
+      angular.forEach(locationIds, function(value, key) {
+        if (value === $stateParams.locationId) {
+          console.log(locationIds)
+          locationIds.splice(key, 1);
+           $scope.status();
+          return;
+        }
+    
+      }, $scope.locat);
+   }    
   
 })
 
