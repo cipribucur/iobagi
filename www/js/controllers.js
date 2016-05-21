@@ -156,7 +156,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
 .controller('AvatarCtrl',  function($scope, $stateParams, Avatars, $localStorage) {
   
-  $storage = $localStorage;
+
   
   var i = 0;
   angular.forEach(Avatars, function(value, key) {
@@ -171,7 +171,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
           $scope.avatar=value;
         }
     })
-    if($scope.avatar.selected==true){
+    if($localStorage.avatarId==$stateParams.avatarId){
       $scope.buttonText = "Unselect";
       $scope.buttonStyle="button-assertive";
     }
@@ -180,39 +180,30 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
       $scope.buttonStyle="button-balanced";
     }
   }
+  
   $scope.status();
   
   $scope.select = function(){
     
-    var i = 0;
-    angular.forEach(Avatars , function(value, key) {
-        if(value.id == $stateParams.avatarId) {
-          $scope.avatar=value;
-          $storage.avatarId = value.id;
-          //console.log($localStorage);
-        }
-    })
-    
-    if($scope.avatar.selected==false){
-      
-      $scope.avatar.selected = true;
-      angular.forEach(Avatars, function(value, key) {
-        if(value.id!= $stateParams.avatarId)
-        {
-          $scope.avatar=value;
-          $scope.avatar.selected=false;
-        }
-      })
-        
-      $scope.buttonText = "Unselect";
-      $scope.buttonStyle="button-assertive";
+    if($localStorage.avatarIds==$stateParams.avatarId){
+      $scope.removeAvatar();
     }
     else{
-      $scope.avatar.selected = false;
-      $scope.buttonText = "Select";
-      $scope.buttonStyle="button-balanced";
-      
+      $scope.addAvatar();
     }
+  }
+  
+  $scope.addAvatar=function(){
+    $scope.buttonText = "Unselect";
+    $scope.buttonStyle="button-assertive";
+    $localStorage.avatarId=$stateParams.avatarId;
+  }
+  
+  $scope.removeAvatar=function(){
+    $scope.buttonText = "Select";
+    $scope.buttonStyle="button-balanced";
+    $localStorage.avatarId=-1;
+    
   }
 })
 
