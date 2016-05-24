@@ -79,10 +79,6 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   $scope.locations = Locations;
   
   $scope.select_all = function(){
-    angular.forEach(Locations, function(value, key) {
-        $scope.location=value;
-        $scope.location.selected=true
-    })
     alert("All locations selected");
   }
   
@@ -209,6 +205,10 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
 
  .controller('MapCtrl', function($scope, $stateParams, Locations){
     $scope.location = Locations;
+    
+    $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
+    
+    
   })
 
 .controller('OptionsCtrl',function($scope) {
