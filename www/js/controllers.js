@@ -203,7 +203,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage', 'uiGmapgoogle-maps'
   }
 })
 
- .controller('MapCtrl', function($scope, $stateParams, Locations, uiGmapgooglemaps){
+ .controller('MapCtrl', function($scope, $stateParams, Locations){
     $scope.location = Locations;
     
     $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
