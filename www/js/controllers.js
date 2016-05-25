@@ -1,6 +1,6 @@
 /*global angular*/
 
-angular.module('starter.controllers', ['ionic', 'ngStorage'])
+angular.module('starter.controllers', ['ionic', 'ngStorage', 'uiGmapgoogle-maps'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -203,7 +203,7 @@ angular.module('starter.controllers', ['ionic', 'ngStorage'])
   }
 })
 
- .controller('MapCtrl', function($scope, $stateParams, Locations){
+ .controller('MapCtrl', function($scope, $stateParams, Locations, uiGmapgooglemaps){
     $scope.location = Locations;
     
     $scope.map = { center: { latitude: 45, longitude: -73 }, zoom: 8 };
